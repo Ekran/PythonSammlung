@@ -38,7 +38,7 @@ def filter_termintabelle(Termintabelle,typ,text):
     Termintabelle_gefiltert = list()
     for termin in Termintabelle:
         found = 0
-        if typ == 1 and str(termin[0]).find(str(text))>=0:
+        if typ == 1 and str(termin[0]).find(str(text))==0:
             found = 1
         if (typ == 2 or typ == 3) and (str(termin[5]).find(str(text))>=0 or str(termin[6]).find(str(text))>=0):
             found = 1
@@ -541,7 +541,7 @@ def get_zeile_anfang_termine(wb,sheet_namen):
 ## Dateiname festlegen und öffnen
 # filename = 'PLANWS172.xlsx'
 # filename = 'test1.xlsx'
-filename = 'Kopie von PLANSS18.xlsx'
+filename = 'PLANSS18.xlsx'
 
 wb = load_workbook(filename, read_only = True)
 
