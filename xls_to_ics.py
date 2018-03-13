@@ -218,7 +218,7 @@ def get_Termine(wb, sheet_namen,Gruppen,zeile_anfang_termine):
         if Anzahl_Zeilen < 1:
             print('Keine Termine in ' + name + ' ab Zeile ' +str(zeile_anfang_termine[j]) + '?')
             continue # nächste Tabellenseite
-        for i in range(0,Anzahl_Zeilen-1): # über alle Zeilen mit Terminen
+        for i in range(0,Anzahl_Zeilen): # über alle Zeilen mit Terminen
             # erste Spalte enthält Datum
             inhalt = ws[Zell_Addresse(zeile_anfang_termine[j]+i,1)].value
             if not isinstance(inhalt, str): # Wenn leer:
