@@ -38,15 +38,18 @@ def filter_termintabelle(Termintabelle,typ,text):
     Termintabelle_gefiltert = list()
     for termin in Termintabelle:
         found = 0
-        if typ == 1 and str(termin[0]).find(str(text))==0:
+        if typ == 1 and str(termin[0]).find(str(text))==0: # Matrikel
             found = 1
-        if (typ == 2 or typ == 3) and (str(termin[5]).find(str(text))>=0 or str(termin[6]).find(str(text))>=0):
+        # Laboring, Prof
+        if (typ == 2 or typ == 4) and (str(termin[5]).find(str(text))>=0 or str(termin[6]).find(str(text))>=0):
             found = 1
+        # Raum
         if typ == 3 and str(termin[4]).find(str(text))>=0:
             found = 1
+        # Gruppe
         if typ == 5 and int(termin[1]) == int(text):
             found = 1
-
+    
         if found != 0:
            Termintabelle_gefiltert.append(termin)
     return Termintabelle_gefiltert
@@ -62,9 +65,17 @@ def get_profs(Termintabelle):
 def get_laborings(Termintabelle):
     Laborings = list()
     for termin in Termintabelle:
-        if termin[6] not in Laborings:
+        if termin[5] not in Laborings:
             Laborings.append(termin[5])    
     return Laborings
+
+def get_Raeume(Termintabelle):
+    Raeume = list()
+    for termin in Termintabelle:
+        if termin[4] not in Raeume:
+            Raeume.append(termin[4])    
+    return Raeume
+
 
 def export_ical(Termintabelle,file_out):
    #http://icalendar.readthedocs.io/en/latest/usage.html
@@ -590,7 +601,7 @@ for ing in Laborings:
 # ical pro Prof. erzeugen    
 Profs = get_profs(Termintabelle)
 for prof in Profs:
-    file_out = 'out_Prof_' + str(prof) + '.ics'
+    file_out = 'out_Prof_' + str(prof).replace('/','') + '.ics'
     Termintabelle_gefiltert = filter_termintabelle(Termintabelle,4,prof)
     export_ical(Termintabelle_gefiltert,file_out)
 
@@ -617,3 +628,8 @@ for matrikel in sheet_namen:
     i = i + 1
 
 # ical pro Raum erzeugen?
+Raeume = get_Raeume(Termintabelle)
+for raum in Raeume:
+    file_out = 'out_Raum_' + str(raum).replace('/','').replace('.','-') + '.ics'
+    Termintabelle_gefiltert = filter_termintabelle(Termintabelle,3,raum)
+    export_ical(Termintabelle_gefiltert,file_out)
