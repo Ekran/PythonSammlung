@@ -621,10 +621,10 @@ i = 0
 for matrikel in sheet_namen:
     Anz_Gruppen = Gruppen[i]
     for gruppe in range(1,Anz_Gruppen+1):
-        file_out = 'out_' + str(matrikel) + "_Gr."+ str(gruppe) + '.ics'
+        file_out = 'out_' + str(matrikel) + "_Gr"+ str(gruppe) + '.ics'
         Termintabelle_gefiltert1 = filter_termintabelle(Termintabelle,1,matrikel)
         Termintabelle_gefiltert2 = filter_termintabelle(Termintabelle_gefiltert1,5,gruppe)
-        export_ical(Termintabelle_gefiltert,file_out)
+        export_ical(Termintabelle_gefiltert2,file_out)
     i = i + 1
 
 # ical pro Raum erzeugen?
