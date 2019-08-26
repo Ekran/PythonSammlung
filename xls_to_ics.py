@@ -2,14 +2,19 @@
 # released under GPL-3.0 https://www.gnu.org/licenses/gpl-3.0.de.html
 # 2017-05-29 started
 # 2018-03-13 alpha --> exports ics for students, Staff, but some dates are missing
+# 2019-08-26 Vollständigkeit des Exports der ICS Daten ist ungeprüft
 
 # Idee: Eine Excel-Tabelle einlesen die auf mehreren Seiten Praktikumstermine enthält
 # primäres Ziel:
 # - ical Datei exportieren
 # - einmal pro Matrikelgruppen
 # - einmal pro Betreuername
-# optional
+# - ics Datei kann in Kalenderprogramm eingelesen werden, z.B. Thunderbild, Groupwise
+# - empfohlene Arbeitsweise: ics Import in Extral Kalender "Praktikum" o.ä. einlesen
+# - vor oder bei erneutenm Import alten Inhalt löschen, zumindest den in dem Semester (Monatsansicht, alles markieren, löschen) oder Kalender löschen
+# offen für Zukunft
 # - in Verzeichnisse einlesen und diff auf ical durchführen = hat sich etwas geändert --> Benachrichtigung (per email)
+# - Statistik, welches Matrikel, Raum, Personal hat am meisten
 
 ## Quellen:
 # https://openpyxl.readthedocs.io/en/default/usage.html#read-an-existing-workbook
@@ -550,9 +555,10 @@ def get_zeile_anfang_termine(wb,sheet_namen):
 
 
 ## Dateiname festlegen und öffnen
-# filename = 'PLANWS172.xlsx'
+# filename = 'PLANWS19.xlsx'
 # filename = 'test1.xlsx'
-filename = 'PLANSS18.xlsx'
+
+filename = 'PLAN.xlsx'
 
 wb = load_workbook(filename, read_only = True)
 
